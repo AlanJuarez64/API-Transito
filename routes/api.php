@@ -41,6 +41,7 @@ Route::prefix('camion')->group(function (){
 });
 
 Route::prefix('chofer')->group(function (){
-    Route::get('/{id}', [ChoferController::class, 'Buscar']);   
+    Route::get('/{id}', [ChoferController::class, 'Buscar']);
+    Route::get('/{id}/camion', [ChoferController::class, 'ObtenerCamion']);    
 });
 });
