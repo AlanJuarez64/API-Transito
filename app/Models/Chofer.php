@@ -16,14 +16,13 @@ class Chofer extends Model
         'Licencia',
     ];
 
-    public function usuario()
-    {
-        return $this->belongsTo(Usuario::class, 'ID_Usuario');
-    }
-
-
     public function articulos()
     {
         return $this->hasMany(Articulo::class, 'ID_Usuario');
+    }
+
+    public function camion()
+    {
+        return $this->hasOne(Asignado::class, 'ID_Usuario');
     }
 }
