@@ -21,4 +21,14 @@ class ChoferController extends Controller
         }
     }
 
+    public function ObtenerCamion($id){
+        try{
+            $chofer = Chofer::findOrFail($id);
+            $camion = $chofer->camion;
+            return response()->json($camion);
+
+        }catch(ModelNotFoundException $exception) {
+            return response()->json(['error' => 'chofer no encontrado'], 404);
+        }
+    }
 }
