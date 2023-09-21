@@ -28,12 +28,9 @@ Route::middleware([HandleCors::class])->group(function () {
 Route::prefix('articulo')->group(function (){
     Route::get('/{id}', [ArticuloController::class, 'Buscar']);
     Route::get('/{id}/status', [ArticuloController::class, 'VerEstado']);
-    Route::get('/{id}/producto', [ArticuloController::class, 'ObtenerProducto']);
     Route::get('/{id}/destino', [ArticuloController::class, 'ObtenerDestino']);
     Route::get('/{id}/camion', [ArticuloController::class, 'ObtenerCamion']);
     Route::put('/{id}/status', [ArticuloController::class, 'CambiarEstado']);
-    Route::delete('/{id}', [ArticuloController::class, 'Eliminar']);
-    Route::post('/', [ArticuloController::class, 'Registrar']);
 });
 
 Route::prefix('camion')->group(function (){
@@ -41,7 +38,9 @@ Route::prefix('camion')->group(function (){
     Route::get('/{id}/chofer', [CamionController::class, 'ObtenerChofer']);
     Route::get('/{id}/lotes', [CamionController::class, 'ObtenerLotes']);
     Route::get('/{id}/destinos', [CamionController::class, 'ObtenerDestinos']);
-
 });
 
+Route::prefix('chofer')->group(function (){
+    Route::get('/{id}', [ChoferController::class, 'Buscar']);   
+});
 });
