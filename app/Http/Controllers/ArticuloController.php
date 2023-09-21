@@ -50,58 +50,7 @@ class ArticuloController extends Controller
     }
     }
 
-    public function Eliminar($id)
-{
-    try {
-        $articulo = Articulo::findOrFail($id);
-        $articulo->delete();
-
-        return response()->json(['message' => 'Artículo eliminado correctamente']);
-    } catch (ModelNotFoundException $exception) {
-        return response()->json(['error' => 'Artículo no encontrado'], 404);
-    }
-}
-
-
-
-public function Registrar(Request $request)
-{
-    $request->validate([
-        'ID_Usuario' => 'required|exists:Clientes,ID_Usuario',
-        'ID_Producto' => 'required|exists:Productos,ID_Producto',
-        'Estado' => ['required', Rule::in(['En espera', 'En el almacen', 'En camino', 'Entregado'])],
-    ]);
-
-    $articulo = new Articulo([
-        'ID_Usuario' => $request->input('ID_Usuario'),
-        'ID_Producto' => $request->input('ID_Producto'),
-        'Estado' => $request->input('Estado'),
-    ]);
-    $articulo->ID_Usuario = $request->input('ID_Usuario');
-    $articulo->Estado = $request->input('Estado');
-
-    $articulo->save();
-
-    return response()->json(['mensaje' => 'Artículo registrado correctamente']);
-}
-
 //--------------------Relaciones----------------------------------------------------//
-
-    public function ObtenerProducto($id)
-    {
-        try{
-        $articulo = Articulo::findOrFail($id);
-        $producto = $articulo->producto;
-
-        return response()->json($producto);
-
-        }catch(ModelNotFoundException $exception) {
-            return response()->json(['error' => 'Artículo no encontrado'], 404);
-        }
-        
-    }
-
-
 
     public function ObtenerCamion($id)
     {   
