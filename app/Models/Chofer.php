@@ -10,7 +10,7 @@ class Chofer extends Model
     use HasFactory;
 
     protected $table = 'Chofer';
-    protected $primaryKey = 'ID_Usuario';
+    protected $primaryKey = 'id';
     
     protected $fillable = [
         'Licencia',
@@ -18,11 +18,11 @@ class Chofer extends Model
 
     public function articulos()
     {
-        return $this->hasMany(Articulo::class, 'ID_Usuario');
+        return $this->hasMany(Articulo::class, 'id');
     }
 
     public function camion()
     {
-        return $this->hasOne(Asignado::class, 'ID_Usuario');
+        return $this->hasOne(Asignado::class, 'id');
     }
 }
