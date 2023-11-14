@@ -36,19 +36,6 @@ class ArticuloController extends Controller
         }
     }
 
-    public function VerEstado($id)
-    {
-        try {
-            $articulo = Articulo::findOrFail($id);
-
-            return response()->json(['estado' => $articulo->Estado]);
-
-        } catch (ModelNotFoundException $exception) {
-
-        return response()->json(['error' => 'Artículo no encontrado'], 404);
-    }
-    }
-
 
     public function ObtenerDestino($id)
     {
