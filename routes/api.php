@@ -7,6 +7,7 @@ use App\Http\Controllers\CamionController;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Middleware\Autenticacion;
 use Fruitcake\Cors\HandleCors;
 /*
 |--------------------------------------------------------------------------
@@ -27,21 +28,12 @@ Route::middleware([HandleCors::class])->group(function () {
 
 Route::prefix('articulo')->group(function (){
     Route::get('/{id}', [ArticuloController::class, 'Buscar']);
-    Route::get('/{id}/status', [ArticuloController::class, 'VerEstado']);
-    Route::get('/{id}/destino', [ArticuloController::class, 'ObtenerDestino']);
-    Route::get('/{id}/camion', [ArticuloController::class, 'ObtenerCamion']);
-    Route::put('/{id}/status', [ArticuloController::class, 'CambiarEstado']);
+    Route::get('/{id}/destino', [ArticuloController::class, 'ObtenerDestino'])->middleware(Autenticacion::class);
+    Route::put('/{id}/status', [ArticuloController::class, 'CambiarEstado'])->middleware(Autenticacion::class);;
 });
 
-Route::prefix('camion')->group(function (){
-    Route::get('/{id}', [CamionController::class, 'Buscar']);
-    Route::get('/{id}/chofer', [CamionController::class, 'ObtenerChofer']);
-    Route::get('/{id}/lotes', [CamionController::class, 'ObtenerLotes']);
-    Route::get('/{id}/destinos', [CamionController::class, 'ObtenerDestinos']);
-});
 
 Route::prefix('chofer')->group(function (){
-    Route::get('/{id}', [ChoferController::class, 'Buscar']);
-    Route::get('/{id}/camion', [ChoferController::class, 'ObtenerCamion']);    
+    Route::get('/{id}/camion', [ChoferController::class, 'ObtenerCamion'])->middleware(Autenticacion::class);;    
 });
 });
