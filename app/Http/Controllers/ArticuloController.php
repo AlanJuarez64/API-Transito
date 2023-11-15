@@ -43,7 +43,7 @@ class ArticuloController extends Controller
         $articulo = Articulo::findOrFail($id);
         
         $producto = $articulo->producto;       
-        $destino = $producto->destino;
+        $destino = $articulo->producto->contiene->lote->llega->destino;
         
         return response()->json(['destino' => $destino]);
         }catch(ModelNotFoundException $exception) {

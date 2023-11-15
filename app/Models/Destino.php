@@ -25,4 +25,9 @@ class Destino extends Model
     {
         return $this->hasOne(Articulo::class, 'ID_Destino');
     }
+
+    public function llega()
+    {
+        return $this->hasOne(Llega::class, 'ID_Destino');
+    }
 }
