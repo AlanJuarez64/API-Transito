@@ -20,7 +20,7 @@ class Articulo extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Cliente::class, 'ID_Usuario');
+        return $this->belongsTo(Cliente::class, 'id');
     }
 
     public function producto()

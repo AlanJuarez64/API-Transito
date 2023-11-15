@@ -17,4 +17,9 @@ class Contiene extends Model
     {
         return $this->belongsTo(Producto::class, 'ID_Producto');
     }
+
+    public function lote()
+    {
+        return $this->belongsTo(Lote::class, 'ID_Lote');
+    }
 }

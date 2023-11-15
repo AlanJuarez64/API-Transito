@@ -9,7 +9,7 @@ class Asignado extends Model
 {
     use HasFactory;
     protected $table = 'Asignado';
-    protected $primaryKey = 'ID_Usuario';
+    protected $primaryKey = 'id';
 
     public function chofer()
     {

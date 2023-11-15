@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
-    protected $table = 'Producto';
+    protected $table = 'Productos';
 
     protected $primaryKey = 'ID_Producto';
 
@@ -24,16 +24,21 @@ class Producto extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'ID_Usuario');
+        return $this->belongsTo(Usuario::class, 'id');
     }
 
     public function destino()
     {
-        return $this->belongsTo(Destino::class, 'ID_Usuario', 'ID_Loc');
+        return $this->belongsTo(Destino::class, 'ID_Destino', 'ID_Loc');
     }
 
     public function camion()
     {
         return $this->belongsTo(Camion::class, 'Num_Serie', 'Num_Serie');
+    }
+
+    public function contiene()
+    {
+        return $this->hasOne(Contiene::class, 'ID_Producto');
     }
 }

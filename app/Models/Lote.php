@@ -36,4 +36,13 @@ class Lote extends Model
     {
         return $this->belongsTo(Destino::class, 'ID_Destino');
     }
+    public function contiene()
+    {
+        return $this->hasOne(Contiene::class, 'ID_Lote');
+    }
+
+    public function llega()
+    {
+        return $this->hasOne(Llega::class, 'ID_Lote');
+    }
 }
